@@ -89,7 +89,7 @@ SeriesItemsSection.propTypes = {
 }
 
 SeriesItemsSection.defaultProps = {
-	loading: false,
+	loading: true,
 	type: 'grid',
 	series: [],
 	addToList: () => {}

@@ -122,7 +122,7 @@ const filterChange = (type, e) => (dispatch, getState, { api }) => {
 			params: {
 				page: 1,
 				sort_by: filterOrder,
-				year: filterYear,
+				first_air_date_year: filterYear,
 				with_genres: filterGenre
 			}
 		})
