@@ -1,0 +1,2 @@
+import RecommendationItemsSection from './RecommendationItemsSection'
+export default RecommendationItemsSection
