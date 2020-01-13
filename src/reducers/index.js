@@ -1,4 +1,4 @@
-import MovieReducer from './MovieReducer'
+import MovieReducer from '../slices/MoviesSlice'
 import ViewFilterReducer from './ViewFilterReducer'
 import SerieReducer from './SerieReducer'
 import MyListReducer from './MyListReducer'

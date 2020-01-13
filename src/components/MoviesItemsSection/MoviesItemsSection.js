@@ -5,11 +5,12 @@ import ItemsSection, {
 	ItemsSectionTitle
 } from '../ItemsSection'
 import Button from '../Button'
-import {
-	addToMyList,
+import {	
 	refreshMoviesRequest,
-	refreshSearchMovies
-} from '../../actions'
+} from '../../slices/MoviesSlice'
+
+import { addToMyList, refreshSearchMovies } from '../../actions'
+
 import PropTypes from 'prop-types'
 
 const mapStateToProps = state => ({

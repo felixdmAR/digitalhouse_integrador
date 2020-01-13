@@ -1,4 +1,3 @@
-export * from './movies'
 export * from './myList'
 export * from './series'
 export * from './viewFilter'

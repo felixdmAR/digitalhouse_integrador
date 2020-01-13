@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import MoviePage from '../pages/MoviePage'
 import { compose, lifecycle } from 'recompose'
 import {
-	setViewFilter,
 	filterMovieGenresFetchSuccess,
 	saveMovieFilters,
 	popularMoviesFetchSuccess,
@@ -11,7 +10,8 @@ import {
 	discoverMoviesFetchSuccess,
 	discoverMoviesFetchRequest,
 	discoverMoviesFetchFailure
-} from '../actions'
+} from '../slices/MoviesSlice'
+import { setViewFilter } from '../actions'
 
 const mapStateToProps = state => ({
 	movies: state.MovieReducer.movies,
