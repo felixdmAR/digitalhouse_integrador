@@ -3,10 +3,11 @@ import DetailPage from '../pages/DetailPage'
 import { compose, lifecycle } from 'recompose'
 import {
 	setDetailType,
-	setViewFilter,
-	detailFetchSuccess,
-	detailFetchFailure
-} from '../actions'
+	fetchDetailSuccess,
+	fetchDetailFailure
+} from '../slices/DetailSlice'
+
+import { setViewFilter } from '../actions'
 
 const mapStateToProps = state => ({
 	detail: state.DetailReducer.detail,
@@ -64,9 +65,9 @@ const fecthSerieDetail = (id, dispatch, api) => {
 			)
 			recommendationList = recommendationList.splice(0, 6)
 
-			dispatch(detailFetchSuccess(detail, recommendationList))
+			dispatch(fetchDetailSuccess({ detail, recommendationList }))
 		})
-		.catch(error => dispatch(detailFetchFailure()))
+		.catch(error => dispatch(fetchDetailFailure()))
 }
 
 const fetchMovieDetail = (id, dispatch, api) => {
@@ -117,9 +118,9 @@ const fetchMovieDetail = (id, dispatch, api) => {
 			)
 			recommendationList = recommendationList.splice(0, 6)
 
-			dispatch(detailFetchSuccess(detail, recommendationList))
+			dispatch(fetchDetailSuccess({ detail, recommendationList }))
 		})
-		.catch(error => dispatch(detailFetchFailure()))
+		.catch(error => dispatch(fetchDetailFailure()))
 }
 
 const fetchCacheDetail = (id, dispatch, api) => {
@@ -133,7 +134,7 @@ const fetchCacheDetail = (id, dispatch, api) => {
 		else return false
 	})
 
-	if (!exist) dispatch(detailFetchFailure())
+	if (!exist) dispatch(fetchDetailFailure())
 
 	switch (exist.type) {
 		case 'movie':
@@ -143,7 +144,7 @@ const fetchCacheDetail = (id, dispatch, api) => {
 			fecthSerieDetail(id, dispatch, api)
 			break
 		default:
-			dispatch(detailFetchFailure())
+			dispatch(fetchDetailFailure())
 			break
 	}
 }

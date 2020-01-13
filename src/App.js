@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-import rootReducer from './reducers'
+import rootReducers from './reducers'
 import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import { Route, Switch } from 'react-router-dom'
@@ -15,20 +14,30 @@ import DetailPageContainer from './containers/DetailPageContainer'
 import SeriePageContainer from './containers/SeriePageContainer'
 import SearchPageContainer from './containers/SearchPageContainer'
 import NotFoundPage from './pages/NotFoundPage'
-
 import TheMovieDbApi from './services/TheMovieDbApi'
-let api = new TheMovieDbApi()
-
-const composeEnhancers =
-	typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-		? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-		: compose
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 
 const history = createHistory()
-const enhancer = composeEnhancers(
-	applyMiddleware(thunk.withExtraArgument({ api }), routerMiddleware(history))
-)
-const store = createStore(rootReducer, enhancer)
+let api = new TheMovieDbApi()
+
+const middleware = [
+	...getDefaultMiddleware({
+		thunk: {
+			extraArgument: { api }
+		},
+		serializableCheck: false
+	}),
+	//thunk.withExtraArgument({ api }),
+	routerMiddleware(history)
+]
+
+const store = configureStore({
+	reducer: rootReducers,
+	middleware: middleware,
+	devTools: process.env.NODE_ENV !== 'production',
+	enhancers: [],
+	preloadedState: []
+})
 
 class App extends Component {
 	render() {

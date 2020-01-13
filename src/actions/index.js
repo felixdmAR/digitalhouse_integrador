@@ -1,4 +1,3 @@
-export * from './detail'
 export * from './movies'
 export * from './myList'
 export * from './series'
