@@ -10,7 +10,7 @@ import {
 	discoverMoviesFetchSuccess,
 	discoverMoviesFetchRequest,
 	discoverMoviesFetchFailure
-} from '../slices/MoviesSlice'
+} from '../slices/MovieSlice'
 import { setViewFilter } from '../actions'
 
 const mapStateToProps = state => ({

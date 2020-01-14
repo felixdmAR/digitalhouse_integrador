@@ -7,7 +7,7 @@ import ItemsSection, {
 import Button from '../Button'
 import {	
 	refreshMoviesRequest,
-} from '../../slices/MoviesSlice'
+} from '../../slices/MovieSlice'
 
 import { addToMyList, refreshSearchMovies } from '../../actions'
 

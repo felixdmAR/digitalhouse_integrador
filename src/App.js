@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import rootReducers from './reducers'
-import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
@@ -27,7 +26,6 @@ const middleware = [
 		},
 		serializableCheck: false
 	}),
-	//thunk.withExtraArgument({ api }),
 	routerMiddleware(history)
 ]
 

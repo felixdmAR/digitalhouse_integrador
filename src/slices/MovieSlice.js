@@ -50,8 +50,8 @@ const initialOrderBy = () => {
 }
 const initialFilters = ['', '', '']
 
-const moviesSlice = createSlice({
-	name: 'DETAIL',
+const movieSlice = createSlice({
+	name: 'MOVIE',
 	initialState: {
 		movies: [],
 		moviesSearchQty: 0,
@@ -71,11 +71,7 @@ const moviesSlice = createSlice({
 			if (!state.movies) return
 
 			let newMovies = state.movies.map(movie => {
-				if (haveMovieInLocalStorage(movie.id))
-					movie.inLocalStorage = true
-				else 
-					movie.inLocalStorage = false
-
+				movie.inLocalStorage = haveMovieInLocalStorage(movie.id);												
 				return movie
 			})
 
@@ -126,6 +122,6 @@ export const {
 	discoverMoviesFetchSuccess,
 	discoverMoviesFetchFailure,
 	filterMovieGenresFetchSuccess
-} = moviesSlice.actions
+} = movieSlice.actions
 
-export default moviesSlice.reducer
+export default movieSlice.reducer

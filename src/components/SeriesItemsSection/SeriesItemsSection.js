@@ -6,10 +6,12 @@ import ItemsSection, {
 } from '../ItemsSection'
 import Button from '../Button'
 import {
-	addToMyList,
-	refreshSeriesRequest,
+	addToMyList,	
 	refreshSearchSeries
 } from '../../actions'
+
+import {refreshSeriesRequest} from '../../slices/SerieSlice'
+
 import PropTypes from 'prop-types'
 
 const mapStateToProps = state => ({

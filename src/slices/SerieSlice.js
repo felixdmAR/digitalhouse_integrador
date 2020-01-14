@@ -1,3 +1,5 @@
+import { createSlice } from '@reduxjs/toolkit'
+
 const initialFilterYears = () => {
 	let filterYears = []
 	let startYear = 2000
@@ -35,18 +37,6 @@ const initialOrderBy = () => {
 
 const initialFilters = ['', '', '']
 
-const initalState = {
-	series: [],
-	seriesSearchQty: 0,
-	isFetching: false,
-	isFetched: false,
-	error: null,
-	filters: initialFilters,
-	filterGenres: [],
-	filterYears: initialFilterYears(),
-	filterOrderBy: initialOrderBy()
-}
-
 const haveSerieInLocalStorage = id => {
 	let myListLocalStorage = localStorage.getItem('MyList')
 	let initialMyListData = myListLocalStorage
@@ -61,14 +51,21 @@ const haveSerieInLocalStorage = id => {
 	return hasSerie && hasSerie.length > 0 ? true : false
 }
 
-const SerieReducer = (state = initalState, { type, ...payload }) => {
-	switch (type) {
-		case 'SAVE_SERIES_FILTERS':
-			return {
-				...state,
-				filters: payload.filters
-			}
-		case 'REFRESH_SERIES_REQUEST':
+const serieSlice = createSlice({
+	name: 'SERIE',
+	initialState: {
+		series: [],
+		seriesSearchQty: 0,
+		isFetching: false,
+		isFetched: false,
+		error: null,
+		filters: initialFilters,
+		filterGenres: [],
+		filterYears: initialFilterYears(),
+		filterOrderBy: initialOrderBy()
+	},
+	reducers: {
+		refreshSeriesRequest(state, action) {	
 			if (!state.series) return
 
 			let newSeries = state.series.map(serie => {
@@ -79,58 +76,54 @@ const SerieReducer = (state = initalState, { type, ...payload }) => {
 				return serie
 			})
 
-			return {
-				...state,
-				series: newSeries
-			}
-		case 'FETCH_POPULAR_SERIES_REQUEST':
-			return {
-				...state,
-				isFetching: true
-			}
-		case 'FETCH_POPULAR_SERIES_SUCCESS':
-			return {
-				...state,
-				series: payload.series,
-				isFetching: false,
-				isFetched: true
-			}
-		case 'FETCH_POPULAR_SERIES_FAILURE':
-			return {
-				...state,
-				error: payload.error,
-				isFetching: false,
-				isFetched: false
-			}
-
-		case 'FETCH_DISCOVER_SERIES_REQUEST':
-			return {
-				...state,
-				isFetching: true
-			}
-		case 'FETCH_DISCOVER_SERIES_SUCCESS':
-			return {
-				...state,
-				series: payload.series,
-				seriesSearchQty: payload.series.length,
-				isFetching: false,
-				isFetched: true
-			}
-		case 'FETCH_DISCOVER_SERIES_FAILURE':
-			return {
-				...state,
-				error: payload.error,
-				isFetching: false,
-				isFetched: false
-			}
-		case 'FETCH_SERIES_GENRES_SUCCESS':
-			return {
-				...state,
-				filterGenres: payload.genres
-			}
-		default:
-			return state
+			state.series = newSeries			
+		},
+		popularSeriesFetchSuccess(state, action) {
+			state.series = action.payload.series
+			state.isFetching = false
+			state.isFetched = true			
+		},
+		popularSeriesFetchRequest(state, action) {
+			state.isFetching = true			
+		},
+		popularSeriesFetchFailure(state, action) {
+			state.error= action.payload.error
+			state.isFetching= false
+			state.isFetched= false			
+		},
+		discoverSeriesFetchSuccess(state, action) {
+			state.series= action.payload.series
+			state.seriesSearchQty= action.payload.series.length
+			state.isFetching= false
+			state.isFetched= true			
+		},
+		discoverSeriesFetchRequest(state, action) {	
+			state.isFetching= true
+		},
+		discoverSeriesFetchFailure(state, action) {	
+			state.error= action.payload.error
+			state.isFetching= false
+			state.isFetched= false		
+		},
+		filterSeriesGenresFetchSuccess(state, action) {	
+			state.filterGenres= action.payload.genres		
+		},
+		saveSeriesFilters(state, action) {	
+			state.filters= action.payload.filters		
+		}	
 	}
-}
+})
 
-export default SerieReducer
+export const {
+	saveSeriesFilters,
+	filterSeriesGenresFetchSuccess,
+	discoverSeriesFetchFailure,
+	discoverSeriesFetchRequest,
+	discoverSeriesFetchSuccess,
+	popularSeriesFetchFailure,
+	popularSeriesFetchRequest,
+	popularSeriesFetchSuccess,
+	refreshSeriesRequest
+} = serieSlice.actions
+
+export default serieSlice.reducer
