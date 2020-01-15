@@ -1,13 +1,11 @@
 import { connect } from 'react-redux'
 import DetailPage from '../pages/DetailPage'
 import { compose, lifecycle } from 'recompose'
-import {
-	setDetailType,
-	fetchDetailSuccess,
-	fetchDetailFailure
-} from '../slices/DetailSlice'
 
-import { setViewFilter } from '../actions'
+import { setDetailType,
+	fetchDetailSuccess,
+	fetchDetailFailure,
+	setViewFilter } from '../actions'
 
 const mapStateToProps = state => ({
 	detail: state.DetailReducer.detail,

@@ -7,10 +7,9 @@ import ItemsSection, {
 import Button from '../Button'
 import {
 	addToMyList,	
-	refreshSearchSeries
+	refreshSearchSeries,
+	refreshSeriesRequest
 } from '../../actions'
-
-import {refreshSeriesRequest} from '../../slices/SerieSlice'
 
 import PropTypes from 'prop-types'
 

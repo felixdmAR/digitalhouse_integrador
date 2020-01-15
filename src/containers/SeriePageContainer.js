@@ -1,11 +1,9 @@
 import { connect } from 'react-redux'
 import SeriePage from '../pages/SeriePage'
 import { compose, lifecycle } from 'recompose'
-import {
-	setViewFilter,	
-} from '../actions'
 
 import { 
+	setViewFilter,	
 	filterSeriesGenresFetchSuccess,
 	saveSeriesFilters,
 	popularSeriesFetchSuccess,
@@ -14,7 +12,7 @@ import {
 	discoverSeriesFetchSuccess,
 	discoverSeriesFetchRequest,
 	discoverSeriesFetchFailure
-} from '../slices/SerieSlice'
+} from '../actions'
 
 const mapStateToProps = state => ({
 	series: state.SerieReducer.series,

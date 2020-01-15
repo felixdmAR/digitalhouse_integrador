@@ -5,11 +5,7 @@ import ItemsSection, {
 	ItemsSectionTitle
 } from '../ItemsSection'
 import Button from '../Button'
-import {	
-	refreshMoviesRequest,
-} from '../../slices/MovieSlice'
-
-import { addToMyList, refreshSearchMovies } from '../../actions'
+import { refreshMoviesRequest,addToMyList, refreshSearchMovies } from '../../actions'
 
 import PropTypes from 'prop-types'
 

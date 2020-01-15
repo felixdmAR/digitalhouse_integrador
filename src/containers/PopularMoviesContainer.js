@@ -5,7 +5,7 @@ import {
 	popularMoviesFetchSuccess,
 	popularMoviesFetchRequest,
 	popularMoviesFetchFailure
-} from '../slices/MovieSlice'
+} from '../actions'
 
 const mapStateToProps = state => ({
 	movies: state.MovieReducer.movies,

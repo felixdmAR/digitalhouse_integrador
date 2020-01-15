@@ -6,7 +6,7 @@ import {
 	popularSeriesFetchSuccess,
 	popularSeriesFetchRequest,
 	popularSeriesFetchFailure
-} from '../slices/SerieSlice'
+} from '../actions'
 
 const mapStateToProps = state => ({
 	series: state.SerieReducer.series,
