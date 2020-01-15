@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect, batch } from 'react-redux'
 import SearchPage from '../pages/SearchPage'
 import { compose, lifecycle } from 'recompose'
 import {
@@ -91,13 +91,14 @@ const fetchMovies = (dispatch, api, query) => {
 					})
 				)
 
-				dispatch(
-					searchMoviesFetchSuccess(
-						movies.slice(0, 18),
-						res.data.total_results,
-						query
-					)
-				)
+				dispatch(setViewFilter('grid'))
+				dispatch(searchMoviesFetchSuccess(
+					{
+						movies: movies.slice(0, 18),
+						moviesQty: res.data.total_results,
+						searchQuery: query
+					}
+				))
 			},
 			err => dispatch(searchMoviesFetchFailure(err))
 		)
@@ -131,13 +132,15 @@ const fetchSeries = (dispatch, api, query) => {
 					})
 				)
 
+				dispatch(setViewFilter('grid'))
 				dispatch(
 					searchSeriesFetchSuccess(
-						series.slice(0, 18),
-						res.data.total_results,
-						query
-					)
-				)
+						{
+							series: series.slice(0, 18),
+							seriesQty: res.data.total_results,
+							searchQuery: query
+						}
+					))
 			},
 			err => dispatch(searchSeriesFetchFailure(err))
 		)

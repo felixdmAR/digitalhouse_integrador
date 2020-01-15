@@ -3,7 +3,7 @@ import ViewFilterReducer from '../slices/ViewFilterSlice'
 import SerieReducer from '../slices/SerieSlice'
 import MyListReducer from './MyListReducer'
 import DetailReducer from '../slices/DetailSlice'
-import SearchReducer from './SearchReducer'
+import SearchReducer from '../slices/SearchSlice'
 import { routerReducer } from 'react-router-redux'
 import { combineReducers } from '@reduxjs/toolkit'
 

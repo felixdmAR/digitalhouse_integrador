@@ -25,7 +25,17 @@ export {
 	popularSeriesFetchSuccess,
     refreshSeriesRequest
 } from '../slices/SerieSlice'
-  
-export * from './myList'
+
 export { setViewFilter } from '../slices/ViewFilterSlice'
-export * from './search'
+
+export {saveSearchFilter,
+	searchSeriesFetchFailure,
+	searchSeriesFetchRequest,
+	searchSeriesFetchSuccess,
+	searchMoviesFetchFailure,
+	searchMoviesFetchRequest,
+	searchMoviesFetchSuccess,
+	refreshSearchSeries,
+	refreshSearchMovies} from '../slices/SearchSlice'
+
+export * from './myList'
