@@ -1,5 +1,5 @@
 import MovieReducer from '../slices/MovieSlice'
-import ViewFilterReducer from './ViewFilterReducer'
+import ViewFilterReducer from '../slices/ViewFilterSlice'
 import SerieReducer from '../slices/SerieSlice'
 import MyListReducer from './MyListReducer'
 import DetailReducer from '../slices/DetailSlice'

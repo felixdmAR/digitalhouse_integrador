@@ -27,5 +27,5 @@ export {
 } from '../slices/SerieSlice'
   
 export * from './myList'
-export * from './viewFilter'
+export { setViewFilter } from '../slices/ViewFilterSlice'
 export * from './search'

@@ -79,7 +79,7 @@ const serieSlice = createSlice({
 			state.series = newSeries			
 		},
 		popularSeriesFetchSuccess(state, action) {
-			state.series = action.payload.series
+			state.series = action.payload
 			state.isFetching = false
 			state.isFetched = true			
 		},
@@ -87,13 +87,13 @@ const serieSlice = createSlice({
 			state.isFetching = true			
 		},
 		popularSeriesFetchFailure(state, action) {
-			state.error= action.payload.error
+			state.error= action.payload
 			state.isFetching= false
 			state.isFetched= false			
 		},
 		discoverSeriesFetchSuccess(state, action) {
-			state.series= action.payload.series
-			state.seriesSearchQty= action.payload.series.length
+			state.series= action.payload
+			state.seriesSearchQty= action.payload.length
 			state.isFetching= false
 			state.isFetched= true			
 		},
@@ -106,10 +106,10 @@ const serieSlice = createSlice({
 			state.isFetched= false		
 		},
 		filterSeriesGenresFetchSuccess(state, action) {	
-			state.filterGenres= action.payload.genres		
+			state.filterGenres= action.payload		
 		},
 		saveSeriesFilters(state, action) {	
-			state.filters= action.payload.filters		
+			state.filters= action.payload		
 		}	
 	}
 })
